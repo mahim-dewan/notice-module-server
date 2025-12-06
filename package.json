@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "joi": "^18.0.2",
+    "mongoose": "^9.0.1"
+  },
+  "name": "nebsit-server",
+  "version": "1.0.0",
+  "description": "This backend provides APIs for creating, listing, updating, and managing notices. It is designed to work with a Next.js (App Router) frontend and follows clean code, modular architecture, and REST best practices.",
+  "main": "server.js",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
