@@ -20,9 +20,11 @@ This backend provides APIs for creating, listing, updating, and managing notices
 
 - Allows creating new notices with full backend validation.
 
-- Fetches all existing notices from the database.
+- Automatic Notice Publishing Based on Scheduled Time
 
 - Prevents saving empty or invalid data.
+
+- Fetches notices with pagination and sorting by createdAt in descending order.
 
 - Centralized error handling for all API requests.
 
@@ -38,6 +40,8 @@ notice-module-server/
 │   │   └── db.js
 │   ├── controllers/
 │   │   └── notice.controller.js
+│   ├── jobs/
+│   │   └── isPublishedNotice.job.js
 │   ├── services/
 │   │   └── notice.service.js
 │   ├── validators/
@@ -88,6 +92,32 @@ npm run dev
 ```bash
 http://localhost:4000
 ```  
+
+## 🗝️ API Endpoints
+
+#### ♦️Base URL
+```bash
+
+```
+#### 🟠create notice 
+```bash
+POST : /api/notices
+
+{
+  "title": "Monthly Performance Review",
+  "target_department": ["HR", "Web", "IT", "Individual"],
+  "employee_id": "EMP12345",
+  "employee_name": "Mahim Dewan",
+  "employee_position": "Web Developer",
+  "type": "Performance Improvement",
+  "publish_date": "2025-12-06T00:00:00.000Z",
+  "body": "Please review your monthly performance and submit your self-assessment by the end of this week.",
+  "attaches": [
+    "https://example.com/attachments/performance_review.pdf",
+    "https://example.com/attachments/guidelines.docx"
+  ]
+}
+```
 
 
 ## 🧑‍💻 Author

@@ -1,4 +1,5 @@
 // src/controllers/notice.controller.js
+import Notice from "../models/notice.model.js";
 import { createNoticeService } from "../services/notice.service.js";
 import { createNoticeValidator } from "../validators/notice.validator.js";
 
@@ -40,9 +41,38 @@ export const createNotice = async (req, res, next) => {
 /**
  * getNotices
  * -----------
- * Controller to fetch all notices.
- * Currently a placeholder route.
+ * Fetch paginated list of notices.
+ * - Supports pagination via query params
+ * - Sorted by latest first (createdAt DESC)
  */
-export const getNotices = async (req, res) => {
-  res.send("Notice Get Route");
+export const getNotices = async (req, res, next) => {
+  try {
+    // Get page from query params (default = 1)
+    const page = req.query.page || 1;
+
+    // Pagination settings
+    const limit = 8;
+    const skip = (page - 1) * limit;
+
+    // Fetch notices with pagination
+    const notices = await Notice.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    // Get total count for frontend pagination UI
+    const total = await Notice.countDocuments();
+
+    // Send successful response
+    return res.status(200).json({
+      success: true,
+      count: notices.length,
+      total,
+      currentPage: Number(page),
+      totalPages: Math.ceil(total / limit),
+      data: notices,
+    });
+  } catch (err) {
+    next(err);
+  }
 };

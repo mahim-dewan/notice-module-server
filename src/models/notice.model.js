@@ -31,6 +31,7 @@ const NoticeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+NoticeSchema.index({ publish_date: 1, isPublished: 1 });
 const Notice = mongoose.model("Notice", NoticeSchema);
 
 export default Notice;

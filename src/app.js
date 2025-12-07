@@ -4,6 +4,7 @@ import cors from "cors";
 import { logger } from "./middlewares/logger.middleware.js";
 import NoticeRouter from "./routes/notice.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
+import { startPublishStatusJob } from "./jobs/isPublishedNotice.job.js";
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(logger);
 app.get("/", async (req, res) => {
   res.send("<h2>Hellow World</h2>");
 });
+
+// Start scheduled jobs
+startPublishStatusJob()
 
 // Routes
 app.use("/api/notices", NoticeRouter);
