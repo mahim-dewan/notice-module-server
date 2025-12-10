@@ -4,6 +4,13 @@ This backend provides APIs for creating, listing, updating, and managing notices
 
 ---
 
+## ☯️ Quick Links
+#### [Live Link⛓️‍💥](https://nebs.onrender.com)
+
+#### [Forntend GitHub⛓️‍💥](https://github.com/mahim-dewan/notice-module-client)
+
+#### [Forntend Live⛓️‍💥](https://example.com)
+
 ## 🧩 Tech Stack
 
 - Node.js
@@ -12,9 +19,13 @@ This backend provides APIs for creating, listing, updating, and managing notices
 
 - MongoDB + Mongoose
 
+- Cloudinary + Multer
+
 - CORS
 
 - Dotenv
+
+- Joi
 
 ## 🚀Features 
 
@@ -23,6 +34,8 @@ This backend provides APIs for creating, listing, updating, and managing notices
 - Automatic Notice Publishing Based on Scheduled Time
 
 - Prevents saving empty or invalid data.
+
+- Multiple image upload to Cloudinary
 
 - Fetches notices with pagination and sorting by createdAt in descending order.
 
@@ -36,26 +49,41 @@ This backend provides APIs for creating, listing, updating, and managing notices
 notice-module-server/
 │── src/
 │   ├── app.js
+│   │
 │   ├── config/
+│   │   ├── cloudinary.js
 │   │   └── db.js
+│   │
 │   ├── controllers/
+│   │   ├── imageUpload.controller.js
 │   │   └── notice.controller.js
+│   │
 │   ├── jobs/
 │   │   └── isPublishedNotice.job.js
+│   │
 │   ├── services/
+│   │   ├── cloudinary.service.js
 │   │   └── notice.service.js
+│   │
 │   ├── validators/
 │   │   └── notice.validator.js
+│   │
 │   ├── models/
 │   │   └── notice.model.js
+│   │
 │   ├── routes/
+│   │   ├── upload.middleware.js
 │   │   └── notice.routes.js
+│   │
 │   ├── middlewares/
-│── │   ├── error.middleware.js
+│   │   ├── upload.middleware.js
+│   │   ├── error.middleware.js
 │   │   └── loggger.middleware.js
+│   │
 │   └── utils/
 │   
 ├── server.js
+├── loadENV.js
 │── .env
 │── .gitIgnore
 │── package-lock.json
@@ -79,8 +107,12 @@ npm install
 
 ### 3️⃣ Create a .env file
 ```bash
-MONGO_URI = "Your MongoDB URI"
-PORT = 4000
+MONGO_URI =Your_MongoDB_URI"
+PORT =4000
+
+CLOUDINARY_CLOUD_NAME=example1568
+CLOUDINARY_API_KEY=example54984651231
+CLOUDINARY_API_SECRET=examplePfsd-sdfs56we523sd
 ```
 
 ### 4️⃣ Start development server
@@ -88,7 +120,7 @@ PORT = 4000
 npm run dev
 ```
 
-### 5️⃣Finally open it
+### 5️⃣ Finally open it
 ```bash
 http://localhost:4000
 ```  
@@ -97,9 +129,9 @@ http://localhost:4000
 
 #### ♦️Base URL
 ```bash
-
+https://nebs.onrender.com
 ```
-#### 🟠create notice 
+#### 🟠 Create notice 
 ```bash
 POST : /api/notices
 
@@ -117,6 +149,11 @@ POST : /api/notices
     "https://example.com/attachments/guidelines.docx"
   ]
 }
+```
+
+#### 🟠 Get All Notices
+```bash
+GET: /api/notices
 ```
 
 
