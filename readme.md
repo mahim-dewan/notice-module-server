@@ -9,7 +9,7 @@ This backend provides APIs for creating, listing, updating, and managing notices
 
 #### [Forntend GitHub⛓️‍💥](https://github.com/mahim-dewan/notice-module-client)
 
-#### [Forntend Live⛓️‍💥](https://example.com)
+#### [Forntend Live⛓️‍💥](https://nebs-it-notice.vercel.app/notices)
 
 ## 🧩 Tech Stack
 
@@ -38,6 +38,8 @@ This backend provides APIs for creating, listing, updating, and managing notices
 - Multiple image upload to Cloudinary
 
 - Fetches notices with pagination and sorting by createdAt in descending order.
+
+- Only status filter has been implemented.
 
 - Centralized error handling for all API requests.
 
@@ -75,12 +77,11 @@ notice-module-server/
 │   │   ├── upload.middleware.js
 │   │   └── notice.routes.js
 │   │
-│   ├── middlewares/
-│   │   ├── upload.middleware.js
-│   │   ├── error.middleware.js
-│   │   └── loggger.middleware.js
-│   │
-│   └── utils/
+│   └── middlewares/
+│       ├── upload.middleware.js
+│       ├── error.middleware.js
+│       └── loggger.middleware.js
+│    
 │   
 ├── server.js
 ├── loadENV.js
@@ -107,8 +108,8 @@ npm install
 
 ### 3️⃣ Create a .env file
 ```bash
-MONGO_URI =Your_MongoDB_URI"
-PORT =4000
+MONGO_URI=Your_MongoDB_URI"
+PORT=4000
 
 CLOUDINARY_CLOUD_NAME=example1568
 CLOUDINARY_API_KEY=example54984651231

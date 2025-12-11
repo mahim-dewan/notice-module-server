@@ -26,7 +26,12 @@ const NoticeSchema = new mongoose.Schema(
     },
     body: { type: String },
     attaches: [String],
-    isPublished: { type: Boolean, default: false, index: true },
+    status: {
+      type: String,
+      enum: ["published", "unpublished", "draft"],
+      default: "unpublished",
+      index: true,
+    },
   },
   { timestamps: true }
 );

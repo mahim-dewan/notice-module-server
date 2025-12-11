@@ -9,11 +9,11 @@ export const startPublishStatusJob = async () => {
 
       const notice = await Notice.updateMany(
         {
-          isPublished: false,
+          status: "unpublished",
           publish_date: { $lte: now },
         },
         {
-          $set: { isPublished: true },
+          $set: { status: "published" },
         }
       );
 
